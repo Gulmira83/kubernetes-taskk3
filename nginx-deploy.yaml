@@ -6,12 +6,13 @@ metadata:
   labels:
     run: nginx-deploy
   name: nginx-deploy
+  namespace : web
 spec:
   replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      run: nginx
+      run: nginx-deploy
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,9 +21,11 @@ spec:
   template:
     metadata:
       labels:
-        run: nginx
+        run: nginx-deploy
     spec:
       containers:
-      - image: nginx:1.16
-        imagePullPolicy: Always
+      - env:
+        - name: NGINX_PORT
+          value: “80"
+        image: nginx:1.16
         name: nginx
