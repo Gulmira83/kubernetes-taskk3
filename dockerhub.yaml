@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dockerhub
+spec:
+  containers:
+    - name: dockherhub
+      image: gulmira83/apache2
+  imagePullSecrets:
+    - name: gulmira20
