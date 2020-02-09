@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mynginx-pod
+spec:
+  replicas: 3
+  imagePullSecrets:
+  - name: zalkar
+  containers:
+  - image: gulmira83/myapache2:v1
+    name: nginx

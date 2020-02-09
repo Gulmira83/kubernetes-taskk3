@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Replicaset
+metadata:
+  name: mysql-rs
+spec:
+  replicas: 1
+  selector:
+    app: mysql-rs          
+    matchLabels:
+      app: mysql-rs-pod
+  template:
+    metadata:
+      labels:
+        app: mysql-rs-pod
+    spec:
+      volumes:
+      - name: rs-mysql
+      persistentVolumeClaim:
+        claimName: pvc.task        
+      containers:
+      - name: rs-mysql
+        image: mysql
+        ports:
+        - containerPort: 80

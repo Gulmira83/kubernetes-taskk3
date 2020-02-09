@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mysql-rs
+  name: mysql-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: mysql-rs
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: mysql-rs
+    spec:
+      containers:
+      - image: mysql
+        name: mysql-rs
+        resources: {}
+status: {}
